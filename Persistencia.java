@@ -9,10 +9,9 @@ public class Persistencia {
     public static void guardarListas(){
         try {
         File myObj = new File("informaciónVehiculos.txt");
+        System.out.println("Archivo creado: " + myObj.getName());
         if (myObj.createNewFile()) {
             System.out.println("Archivo creado: " + myObj.getName());
-        } else {
-            System.out.println("El archivo ya existe.");
         }
         } catch (IOException e) {
             System.out.println("Ocurrió un error.");

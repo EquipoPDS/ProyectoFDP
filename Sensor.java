@@ -32,12 +32,12 @@ public class Sensor {
     }
 
     public static String sensorLibre(){
-        String espacio_libre = "Pisos y espacios: ";
+        String espacio_libre = "";
         for(int i = 0; i<sensores.length; i++){
             for(int j = 0; j<sensores[i].length; j++){
                 if(sensores[i][j].getEstado() == 0){
 
-                    espacio_libre =  espacio_libre + (i+1) + "-" + (j+1) + " \n";
+                    espacio_libre =  espacio_libre + "Piso: "+(i+1) + " Espacio: " + (j+1) + " \n";
                 }
             }
         }

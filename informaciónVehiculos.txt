@@ -1,2 +1,2 @@
-Placa: adafa Marca: faf Color: arojo Valor Comercial: 30000000, Es una moto  y fue ingresado a las horas: 13:16:43.499798300 fecha: 2021-11-12
+Placa: fa Marca: fa Color: azul Valor Comercial: 30000000, Es una moto  y fue ingresado Sun Nov 21 18:30:48 COT 2021
 

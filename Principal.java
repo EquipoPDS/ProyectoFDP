@@ -3,7 +3,7 @@ import java.util.Date;
  
 public class Principal {
     public static void main (String [] args) {
-        
+ 
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese el numero de pisos: ");
         int piso = sc.nextInt();
@@ -11,7 +11,7 @@ public class Principal {
         int espacio = sc.nextInt();
         System.out.println("Tarifa carros: 5.000/h");
         System.out.println("Tarifa motos: 2.500/h");
-        
+ 
         //Llamando al atributo de clase Vehiculo
         Vehiculo.vehiculos = new Vehiculo[piso][espacio];
         //Llamando al atributo de clase Sensor
@@ -30,10 +30,10 @@ public class Principal {
         System.out.println("7: Estado de todos los sensores");
         System.out.println("8: Muestra la información de todos los vehiculos de ese color ingresado" );
         System.out.println("9: Muestra la información de los vehiculos ordenados por valor comercial");
-        System.out.println("10: Desactivar sensor");
+        System.out.println("10: Desactivar sensor y cuanto paga por el tiempo que se quedó"); //si meto un sensor que esta libre me arroja error
         System.out.println("11: Crea un archivo con toda la información que se creó");
-
-
+ 
+ 
         int ingreso = sc.nextInt();
         while (ingreso!=0){
             switch(ingreso){
@@ -64,9 +64,9 @@ public class Principal {
                             Vehiculo.vehiculos[piso2-1][espacio2-1] = m1;
                             Sensor.sensores[piso2-1][espacio2-1].setEstado(1);
                             //m1.hora();
-                            
+ 
                             System.out.println(m1.toString()+ m1.imprimir());
-                            
+ 
                             System.out.println("Vehiculo registrado "+m1.horaIngreso());
  
                         }else if(tipo_vehiculo.equalsIgnoreCase("Carro")){
@@ -109,7 +109,7 @@ public class Principal {
                             Vehiculo.vehiculos[piso3-1][espacio3-1] = m1;
                             Sensor.sensores[piso3-1][espacio3-1].setEstado(1);
                             //m1.hora();
-                            
+ 
                             System.out.println(m1.toString()+","+ m1.imprimir());
                             System.out.println("Vehiculo registrado "+ m1.horaIngreso());
  
@@ -141,7 +141,13 @@ public class Principal {
                     int piso4 = sc.nextInt();
                     System.out.println("Ingrese el espacio: ");
                     int espacio4 = sc.nextInt();
-                    System.out.println(Sensor.sensores[piso4-1][espacio4-1].toString());
+ 
+                    if(Sensor.sensores[piso4-1][espacio4-1].getEstado()==0){
+                          System.out.println(Sensor.sensores[piso4-1][espacio4-1].toString());
+                    }else if(Sensor.sensores[piso4-1][espacio4-1].getEstado()==1){
+                       System.out.println(Sensor.sensores[piso4-1][espacio4-1].toString()+" "+Vehiculo.vehiculos[piso4-1][espacio4-1].toString()+ Vehiculo.vehiculos[piso4-1][espacio4-1].imprimir());
+                    }
+ 
                     break;
                 case 7:
                     System.out.println(Sensor.sensoresEstado());
@@ -163,6 +169,9 @@ public class Principal {
                     System.out.println("En que piso y espacio desea desocupar el carro ?");
                     int piso10 = sc.nextInt();
                     int espacio10 = sc.nextInt();
+                    if(Sensor.sensores[piso10-1][espacio10-1].getEstado()==0){
+                        System.out.println("El espacio está libre");
+                    }else{
                     Sensor.sensores[piso10-1][espacio10-1].setEstado(0);
                     Date fecha2 = new Date();
                     int obtiene_hora2 = ((fecha2.getHours())*60)+fecha2.getMinutes();
@@ -171,14 +180,15 @@ public class Principal {
                     System.out.println(fecha2);
                     if(Vehiculo.vehiculos[piso10-1][espacio10-1].imprimir().equalsIgnoreCase(" Es una moto ")){
                         double valor_pagar_moto = (2500*1*resultado_hora)/(1*60);
-
+ 
                         System.out.println("El valor a pagar es: "+valor_pagar_moto);
-                        
+ 
                     }else if(Vehiculo.vehiculos[piso10-1][espacio10-1].imprimir().equalsIgnoreCase(" Es un carro ")){
                         double valor_pagar_carro = (5000*1*resultado_hora)/(1*60);
-                        
+ 
                         System.out.println("El valor a pagar es: "+ valor_pagar_carro);
                     }
+                }
                     break;
  
                 case 11:
